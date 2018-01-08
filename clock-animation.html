@@ -71,6 +71,7 @@
       transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
       /*To recreate the ticking moment*/
     }
+
   </style>
 
   <script>
@@ -91,10 +92,7 @@
       const hours = now.getHours();
       const hoursDegree = ((hours / 60) * 360) + 90;
       hourHand.style.transform = `rotate(${hoursDegree}deg)`;
-      
-      console.log(seconds, minutes);
     }
-
     setInterval(setDate, 1000);
   </script>
 </body>
