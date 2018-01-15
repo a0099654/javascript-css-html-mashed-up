@@ -24,11 +24,31 @@ function togglePlay() {
 function updateButton() {
     const icon = this.paused ? '►' : '❚ ❚';
     toggle.textContent = icon;
-  }
+}
+
+function skip() {
+    video.currentTime += parseFloat(this.dataset.skip);
+}
+
+function handleChangeUpdate() {
+    video[this.name] = this.value;
+}
+
+function handleProgress() {
+    const percent = (video.currentTime / video.duration) * 100;
+    progressBar.style.flexBasis = `${percent}%`;
+}
 
 /*Hook up the event listener*/
 video.addEventListener('click', togglePlay);
 video.addEventListener('play', updateButton);
 video.addEventListener('pause', updateButton);
 
+video.addEventListener('timeupdate', handleProgress);
+
+skipButtons.forEach((button) => button.addEventListener('click', skip));
+
 toggle.addEventListener('click', togglePlay);
+
+ranges.forEach((range) => range.addEventListener('click', handleChangeUpdate));
+ranges.forEach((range) => range.addEventListener('mousemove', handleChangeUpdate));
